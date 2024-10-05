@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const HomeScreen = ({ navigation }: Props) => {
+export const HomeScreen = () => {
   const [term, setTerm] = useState('');
   const [searchParams, setSearchParams] = useState<{ term: string; location: string; limit: number }>({
     term: 'pasta',
@@ -69,9 +69,9 @@ export const HomeScreen = ({ navigation }: Props) => {
         <Text>Error: {error.message}</Text>
       ) : modifiedResults && (
         <ScrollView style={styles.resultsContainer}>
-          <ResultsList navigation={navigation} title="Cost Effective" businesses={filterResultsByPrice("$")} />
-          <ResultsList navigation={navigation} title="Bit Pricier" businesses={filterResultsByPrice("$$")} />
-          <ResultsList navigation={navigation} title="Big Spender" businesses={filterResultsByPrice("$$$")} />
+          <ResultsList title="Cost Effective" businesses={filterResultsByPrice("$")} />
+          <ResultsList title="Bit Pricier" businesses={filterResultsByPrice("$$")} />
+          <ResultsList title="Big Spender" businesses={filterResultsByPrice("$$$")} />
         </ScrollView>
       )}
     </View>

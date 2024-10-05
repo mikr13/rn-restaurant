@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import type { ScreenProps } from '../types/app';
+import { withNavigation, type NavigationInjectedProps } from 'react-navigation';
 import type { YelpBusinesses } from '../types/yelp';
 import { ResultDetails } from './ResultDetail';
 
@@ -19,15 +19,14 @@ const styles = StyleSheet.create({
 });
 
 type ResultsListProps = {
-  navigation: ScreenProps<"Home">["navigation"];
   title: string;
   businesses?: YelpBusinesses["businesses"];
-};
+} & NavigationInjectedProps;
 
-export const ResultsList = ({
-  navigation,
+export const ResultsList = withNavigation(({
   title,
   businesses,
+  navigation,
 }: ResultsListProps) => {
   return (
     <View style={styles.container}>
@@ -44,4 +43,4 @@ export const ResultsList = ({
         )} />
     </View>
   );
-}
+})
