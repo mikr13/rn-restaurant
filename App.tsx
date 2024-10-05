@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { HomeScreen } from './src/screens/HomeScreen';
+import { ListingDetailsScreen } from './src/screens/ListingDetailsScreen';
+
+const navigator = createStackNavigator({
+  Home: HomeScreen,
+  ListingDetails: ListingDetailsScreen,
+}, {
+  initialRouteName: 'Home',
+  defaultNavigationOptions: {
+    title: 'RN Restaurant',
+  }
+});
+
+const AppContainer = createAppContainer(navigator);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      retry: false,
+    }
+  }
+});
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <AppContainer />
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
