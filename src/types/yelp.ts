@@ -11,6 +11,7 @@ export type YelpBusiness = {
     longitude: number;
   };
   price: string;
+  photos: string[];
 };
 
 export type YelpBusinesses = {

@@ -1,6 +1,7 @@
+import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { withNavigation, type NavigationInjectedProps } from 'react-navigation';
+import { StackNavigation } from '../types/app';
 import type { YelpBusinesses } from '../types/yelp';
 import { ResultDetails } from './ResultDetail';
 
@@ -21,14 +22,15 @@ const styles = StyleSheet.create({
 type ResultsListProps = {
   title: string;
   businesses?: YelpBusinesses["businesses"];
-} & NavigationInjectedProps;
+};
 
-export const ResultsList = withNavigation(({
+export const ResultsList = ({
   title,
   businesses,
-  navigation,
 }: ResultsListProps) => {
-  return (
+  const navigation = useNavigation<StackNavigation>();
+
+  return businesses?.length ? (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <FlatList
@@ -42,5 +44,5 @@ export const ResultsList = withNavigation(({
           </TouchableOpacity>
         )} />
     </View>
-  );
-})
+  ) : null;
+};

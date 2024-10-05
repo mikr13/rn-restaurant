@@ -3,9 +3,6 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { ResultsList } from "../components/ResultsList";
 import { SearchBar } from "../components/SearchBar";
 import { useGetBusinesses } from "../hooks/useGetBusinesses";
-import type { ScreenProps } from "../types/app";
-
-type Props = ScreenProps<"Home">;
 
 const styles = StyleSheet.create({
   container: {
