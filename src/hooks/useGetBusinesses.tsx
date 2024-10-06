@@ -1,4 +1,4 @@
-import { QueryObserverResult, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { client } from '../lib/axios';
 import type { YelpBusinesses } from '../types/yelp';
@@ -21,7 +21,7 @@ export const useGetBusinesses = ({
   params,
   queryKey,
   enabled,
-}: UseGetBusinessesParams): QueryObserverResult<YelpBusinesses, any> => {
+}: UseGetBusinessesParams) => {
   return useQuery<YelpBusinesses, any>({
     queryFn: async () => {
       try {

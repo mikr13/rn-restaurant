@@ -20,7 +20,7 @@ type Props = Partial<ScreenProps<"ListingDetails">>;
 
 export const ListingDetailsScreen = ({ route }: Props) => {
   const id = route?.params.id;
-  const { data, isLoading, isError, error } = useGetBusinessById({
+  const { data } = useGetBusinessById({
     params: {
       id: id || '',
     },
